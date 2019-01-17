@@ -1,7 +1,5 @@
 package pl.gsystems.chirwaw.dto;
 
-import pl.gsystems.chirwaw.dao.Choroba;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

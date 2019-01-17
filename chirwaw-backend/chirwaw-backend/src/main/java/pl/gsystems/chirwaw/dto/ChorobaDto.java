@@ -11,9 +11,9 @@ import java.util.List;
 @Data
 public class ChorobaDto implements Serializable {
 
-	private int idChor;
+	private Integer idChor;
 
-	private String czyNagla;
+	private boolean czyNagla;
 
 	private Date dataPrzyjecia;
 
@@ -23,30 +23,30 @@ public class ChorobaDto implements Serializable {
 
 	private String nrSalaOddz;
 
-	private String potwierdzenie;
+	private boolean potwierdzenie;
 
 	private String rodzOper;
 
 	private String uwagi;
 
-	private SloDec sloDec;
+	private ChorobaStan decyzja;
 
-	private Icd10 icd10;
+	private String icd10;
 
-	private Icd9 icd9;
+	private Integer icd9;
 
-	private Lekarz lekarz1;
+	private Integer lekarzProwadzacyId;
 
-	private Lekarz lekarzRej;
+	private Integer lekarzRejestrujacyId;
 
-	private Odcinek odcinek;
+	private String odcinekId;
 
 	private PacjentDto pacjent;
 
-	private SloTryby sloTryby;
+	private Tryb tryb;
 
-	private List<Operacja> operacjas;
+	private List<OperacjaDto> operacjas;
 
-	private List<Protokol> protokols;
+	private List<ProtokolDto> protokols;
 
 }
