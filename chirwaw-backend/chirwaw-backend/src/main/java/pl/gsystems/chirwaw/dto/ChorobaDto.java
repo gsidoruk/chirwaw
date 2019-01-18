@@ -15,6 +15,8 @@ public class ChorobaDto implements Serializable {
 
 	private Integer idChor;
 
+	private Integer pacjentId;
+
 	private boolean czyNagla;
 
 	private Date dataPrzyjecia;
@@ -42,8 +44,6 @@ public class ChorobaDto implements Serializable {
 	private Integer lekarzRejestrujacyId;
 
 	private String odcinekId;
-
-	private PacjentDto pacjent;
 
 	private Tryb tryb;
 

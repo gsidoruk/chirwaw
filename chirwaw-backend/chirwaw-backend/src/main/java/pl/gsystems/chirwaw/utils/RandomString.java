@@ -22,19 +22,25 @@ public class RandomString {
 
     public static final String digits = "0123456789";
 
-    public static final String alphanum = upper + lower + digits;
+    public final String alphanum = upper + lower + digits;
 
     private final Random random;
 
-    private final char[] symbols;
+    private char[] symbols;
 
     private final char[] buf;
 
-    public RandomString(int length, Random random, String symbols) {
+    private boolean onlyDigits;
+
+    public RandomString(int length, Random random, boolean onlyDigits) {
+        if(onlyDigits) {
+            symbols = digits.toCharArray();
+        } else {
+            symbols = (upper + lower + digits).toCharArray();
+        }
+
         if (length < 1) throw new IllegalArgumentException();
-        if (symbols.length() < 2) throw new IllegalArgumentException();
         this.random = Objects.requireNonNull(random);
-        this.symbols = symbols.toCharArray();
         this.buf = new char[length];
     }
 
@@ -42,14 +48,19 @@ public class RandomString {
      * Create an alphanumeric string generator.
      */
     public RandomString(int length, Random random) {
-        this(length, random, alphanum);
+        this(length, random, false);
     }
+
 
     /**
      * Create an alphanumeric strings from a secure generator.
      */
     public RandomString(int length) {
         this(length, new SecureRandom());
+    }
+
+    public RandomString(int length, boolean onlyDigits) {
+        this(length, new SecureRandom(), onlyDigits);
     }
 
     /**

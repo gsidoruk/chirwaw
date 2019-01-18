@@ -10,7 +10,7 @@ public class OperacjaDto implements Serializable {
 	
 	private Integer idOper;
 	
-	private ChorobaDto choroba;
+	private Integer idChor;
 
 	private Integer OperatorLekId;
 	private String operatorInny;

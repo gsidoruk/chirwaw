@@ -12,7 +12,7 @@ import pl.gsystems.chirwaw.utils.RandomString;
 
 public class ChorobaServiceImpl implements ChorobaService {
 
-	Random generator = new Random();
+	static Random generator = new Random();
 	
 	@Override
 	public int saveChoroba(int pacjentId, ChorobaDto choroba) {
@@ -31,13 +31,14 @@ public class ChorobaServiceImpl implements ChorobaService {
 	public List<ChorobaDto> serchChoroba(ChorobaDto srearchCriteria, int limit, int offset) {
 		int num = generator.nextInt(10);
 		for(int i =0; i < num; i++) {
-			ChorobaDto chor = new ChorobaDto()
+			ChorobaDto chor = new ChorobaDto();
 		}
 		return null;
 	}
-	
-	private ChorobaDto mockChor(int i) {
+
+	public static ChorobaDto mockChor(int i) {
 		ChorobaDto chor = new ChorobaDto();
+		chor.setPacjentId(generator.nextInt(1000));
 		chor.setCzyNagla(false);
 		chor.setDataPrzyjecia(new Date());
 		chor.setDataWprow(new Date());
@@ -50,17 +51,11 @@ public class ChorobaServiceImpl implements ChorobaService {
 		chor.setLekarzRejestrujacyId(generator.nextInt(100));
 		chor.setNrSalaOddz(""+generator.nextInt(10));
 		chor.setOdcinekId(""+generator.nextInt(10));
-		chor.setPacjent(mockPacjent(i));
 		chor.setPotwierdzenie(i%2 == 0);
 		return chor;
 	}
-	
-	private PacjentDto mockPacjent(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	private ChorobaStan getStatus(int i) {
+	private static ChorobaStan getStatus(int i) {
 		if(i%6 == 0) return ChorobaStan.ARCHIWALNY;
 		if(i%6 == 1) return ChorobaStan.GOTOWY;
 		if(i%6 == 2) return ChorobaStan.OCZEKUJE;

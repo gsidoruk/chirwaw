@@ -12,7 +12,7 @@ public class ProtokolDto implements Serializable {
 
 	private Integer idProt;
 
-	private ChorobaDto choroba;
+	private Integer idChor;
 	
 	private Integer idLekOper;
 	private String operatorInny;
