@@ -1,14 +1,16 @@
 package pl.gsystems.chirwaw.dto;
 
 import lombok.Data;
-import pl.gsystems.chirwaw.dao.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
-@Data
+@Getter
+@Setter
 public class ChorobaDto implements Serializable {
 
 	private Integer idChor;
