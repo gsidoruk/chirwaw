@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.chirwawbackend;
+package pl.gsystems.chirwaw;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

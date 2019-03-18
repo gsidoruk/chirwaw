@@ -1,11 +1,11 @@
-package pl.gsystems.chirwaw.service.impl;
+package pl.gsystems.chirwaw.chirwawbackend;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pl.gsystems.chirwaw.dto.ChorobaDto;
-import pl.gsystems.chirwaw.dto.ChorobaStan;
 import pl.gsystems.chirwaw.dto.PacjentDto;
-import pl.gsystems.chirwaw.service.ChorobaService;
-import pl.gsystems.chirwaw.service.PacjentService;
+import pl.gsystems.chirwaw.service.impl.ChorobaServiceImpl;
 import pl.gsystems.chirwaw.utils.RandomString;
 
 import java.util.ArrayList;
@@ -14,29 +14,27 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
-public class PacjentServiceImpl implements PacjentService {
+public class PacjentServiceImpl2 { //implements PacjentService {
 
 	static Random generator = new Random();
 
 
-	@RequestMapping("/greeting2")
+	@RequestMapping("/greeting3")
 	public String testRest(@RequestParam(value="name", defaultValue="World") String name) {
 		return "its allive";
 	}
 
-	@Override
-	@RequestMapping(value = "/getPacjent", method = RequestMethod.GET)
-	public PacjentDto getPacjent(@RequestParam(value="id", defaultValue="0") int id) {
+//	@Override
+	public PacjentDto getPacjent(int id) {
 		return mockPacjent(id);
 	}
 
-	@Override
-	@RequestMapping("/savePacjent")
-	public int savePacjent(@RequestBody PacjentDto dto) {
+	//@Override
+	public int savePacjent(PacjentDto dto) {
 		return generator.nextInt(1000);
 	}
 
-	@Override
+//	@Override
 	public List<PacjentDto> serchPacjent(PacjentDto srearchCriteria, int limit, int offset) {
 		List<PacjentDto> pacjents = new ArrayList<>();
 		for (int j = 0 ; j < generator.nextInt(offset); j++) {

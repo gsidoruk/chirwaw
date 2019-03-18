@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.chirwawbackend;
+package pl.gsystems.chirwaw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
