@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.dto;
+package pl.gsystems.chirwaw.dto.enums;
 
 public enum ChorobaStan {
 	ARCHIWALNY("A"),OCZEKUJE("O"), GOTOWY("G"), ZAKWALIFIKOWANY("W"), ZAPLANOWANY("K"), REZYGNACJA("R");

@@ -32,15 +32,4 @@ public class OperacjaDto implements Serializable {
 	private String nrSalaOper;
 	private Integer nrEkranowy;
 
-
-
-
-
-
-
-
-
-
-
-
 }

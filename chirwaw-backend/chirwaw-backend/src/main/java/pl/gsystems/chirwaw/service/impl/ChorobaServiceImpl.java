@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import pl.gsystems.chirwaw.dto.ChorobaDto;
-import pl.gsystems.chirwaw.dto.ChorobaStan;
-import pl.gsystems.chirwaw.dto.PacjentDto;
+import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
 import pl.gsystems.chirwaw.service.ChorobaService;
 import pl.gsystems.chirwaw.utils.RandomString;
 

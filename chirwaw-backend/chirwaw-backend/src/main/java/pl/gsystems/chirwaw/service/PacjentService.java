@@ -2,18 +2,19 @@ package pl.gsystems.chirwaw.service;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pl.gsystems.chirwaw.dto.PacjentDto;
+import pl.gsystems.chirwaw.dto.PacjentSearchDto;
 
 
 public interface PacjentService {
 
-	String testRest(String param);
+	@RequestMapping(value = "/getPacjent", method = RequestMethod.GET)
+	PacjentDto getPacjent(@RequestParam(value="id", defaultValue="0") int id);
 
-	PacjentDto getPacjent(int id);
+	@RequestMapping(value = "/savePacjent", method = RequestMethod.POST)
+	int savePacjent(@RequestBody PacjentDto dto);
 
-	int savePacjent(PacjentDto dto);
-	
-	List<PacjentDto> serchPacjent(PacjentDto srearchCriteria, int limit, int offset);
+	@RequestMapping(value = "/serchPacjent/{offset}/{limit}", method = RequestMethod.POST)
+	List<PacjentDto> serchPacjent(@RequestBody PacjentSearchDto srearchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
 }

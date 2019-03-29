@@ -3,7 +3,7 @@ package pl.gsystems.chirwaw.service;
 import java.util.List;
 
 import pl.gsystems.chirwaw.dto.ChorobaDto;
-import pl.gsystems.chirwaw.dto.ChorobaStan;
+import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
 
 public interface ChorobaService {
 	

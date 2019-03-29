@@ -1,8 +1,9 @@
 package pl.gsystems.chirwaw.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
+import pl.gsystems.chirwaw.dto.enums.Tryb;
 
 import java.io.Serializable;
 import java.util.Date;
