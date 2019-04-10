@@ -5,22 +5,19 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 
 @Getter
 @Setter
-public class PacjentSearchDto implements Serializable {
+public class PacjentComplexDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	private int idPac;
+	private Integer pacjentId;
 
-	private Date dataWprow;
+	private OperacjaComplexDto operacja;
 
 	private Date dataZgonu;
-
-	private int idLekarzaRej;
 
 	private String imie;
 
@@ -29,7 +26,5 @@ public class PacjentSearchDto implements Serializable {
 	private String pesel;
 
 	private String telKontakt;
-
-	private List<ChorobaDto> chorobas;
 
 }

@@ -14,13 +14,9 @@ public class PacjentDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	private int idPac;
-
-	private Date dataWprow;
+	private Integer pacjentId;
 
 	private Date dataZgonu;
-
-	private int idLekarzaRej;
 
 	private String imie;
 
@@ -29,7 +25,5 @@ public class PacjentDto implements Serializable {
 	private String pesel;
 
 	private String telKontakt;
-
-	private List<ChorobaDto> chorobas;
 
 }

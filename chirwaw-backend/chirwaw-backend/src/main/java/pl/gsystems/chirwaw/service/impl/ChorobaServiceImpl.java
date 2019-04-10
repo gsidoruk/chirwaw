@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.web.bind.annotation.RestController;
 import pl.gsystems.chirwaw.dto.ChorobaDto;
 import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
 import pl.gsystems.chirwaw.service.ChorobaService;
 import pl.gsystems.chirwaw.utils.RandomString;
 
+@RestController
 public class ChorobaServiceImpl implements ChorobaService {
 
 	static Random generator = new Random();
@@ -26,14 +28,6 @@ public class ChorobaServiceImpl implements ChorobaService {
 		return (generator.nextInt(10) % 2 == 0 ) ? true : false;
 	}
 
-	@Override
-	public List<ChorobaDto> serchChoroba(ChorobaDto srearchCriteria, int limit, int offset) {
-		int num = generator.nextInt(10);
-		for(int i =0; i < num; i++) {
-			ChorobaDto chor = new ChorobaDto();
-		}
-		return null;
-	}
 
 	public static ChorobaDto mockChor(int i) {
 		ChorobaDto chor = new ChorobaDto();
@@ -45,7 +39,7 @@ public class ChorobaServiceImpl implements ChorobaService {
 		chor.setDecyzja(getStatus(i));
 		chor.setIcd10(new RandomString(3).nextString());
 		chor.setIcd9(generator.nextInt(7));
-		chor.setIdChor(generator.nextInt(10));
+	//	chor.setIdChor(generator.nextInt(10));
 		chor.setLekarzProwadzacyId(generator.nextInt(100));
 		chor.setLekarzRejestrujacyId(generator.nextInt(100));
 		chor.setNrSalaOddz(""+generator.nextInt(10));

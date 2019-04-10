@@ -12,27 +12,29 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ChorobaDto implements Serializable {
+public class PacjentChorobaSearchResultDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	private Integer chorobaId;
 
-	private Integer pacjentId;
+	private int pacjentId;
+
+	private Date dataZgonu;
+
+	private String imie;
+
+	private String nazwisko;
+
+	private String pesel;
+
+	// choroba:
+
+	private int chorobaId;
 
 	private boolean czyNagla;
 
-	private Date dataPrzyjecia;
-
-	private Date dataWprow;
-
 	private Date dataZgloszenia;
 
-	private String nrSalaOddz;
-
-	private boolean potwierdzenie;
-
 	private String rodzOper;
-
-	private String uwagi;
 
 	private ChorobaStan decyzja;
 
@@ -42,9 +44,7 @@ public class ChorobaDto implements Serializable {
 
 	private Integer lekarzProwadzacyId;
 
-	private Integer lekarzRejestrujacyId;
-
-	private String odcinekId;
+	private String lekarzProwadzacy;
 
 	private Tryb tryb;
 
