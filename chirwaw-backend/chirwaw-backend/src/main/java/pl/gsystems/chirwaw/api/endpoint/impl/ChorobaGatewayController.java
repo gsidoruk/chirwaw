@@ -1,17 +1,16 @@
-package pl.gsystems.chirwaw.service.impl;
+package pl.gsystems.chirwaw.api.endpoint.impl;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.web.bind.annotation.RestController;
-import pl.gsystems.chirwaw.dto.ChorobaDto;
-import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
-import pl.gsystems.chirwaw.service.ChorobaService;
+import pl.gsystems.chirwaw.api.dto.ChorobaDto;
+import pl.gsystems.chirwaw.common.enums.ChorobaStan;
+import pl.gsystems.chirwaw.api.endpoint.ChorobaGateway;
 import pl.gsystems.chirwaw.utils.RandomString;
 
 @RestController
-public class ChorobaServiceImpl implements ChorobaService {
+public class ChorobaGatewayController implements ChorobaGateway {
 
 	static Random generator = new Random();
 	

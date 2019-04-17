@@ -1,12 +1,12 @@
-package pl.gsystems.chirwaw.dto;
+package pl.gsystems.chirwaw.api.dto;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-
 @Data
-public class OperacjaDto implements Serializable {
+public class OperacjaComplexDto implements Serializable {
 	
 	private Integer idOper;
 	

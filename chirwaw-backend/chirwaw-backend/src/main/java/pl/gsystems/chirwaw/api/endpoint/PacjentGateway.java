@@ -1,17 +1,17 @@
-package pl.gsystems.chirwaw.service;
+package pl.gsystems.chirwaw.api.endpoint;
 
 import java.util.List;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import pl.gsystems.chirwaw.dto.PacjentComplexDto;
-import pl.gsystems.chirwaw.dto.PacjentDto;
-import pl.gsystems.chirwaw.dto.PacjentChorobaSearchDto;
-import pl.gsystems.chirwaw.dto.PacjentChorobaSearchResultDto;
+import pl.gsystems.chirwaw.api.dto.PacjentComplexDto;
+import pl.gsystems.chirwaw.api.dto.PacjentDto;
+import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchDto;
+import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchResultDto;
 
 
 @RequestMapping(value = "/pacjent")
-public interface PacjentService {
+public interface PacjentGateway {
 
 	@ApiOperation(value = "Return all information related with Pacjent, by pacjentId", response = PacjentComplexDto.class)
 	@RequestMapping(value = "/getPacjentAllData", method = RequestMethod.GET)

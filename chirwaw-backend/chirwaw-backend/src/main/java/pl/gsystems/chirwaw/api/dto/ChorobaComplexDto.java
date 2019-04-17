@@ -1,9 +1,9 @@
-package pl.gsystems.chirwaw.dto;
+package pl.gsystems.chirwaw.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
-import pl.gsystems.chirwaw.dto.enums.Tryb;
+import pl.gsystems.chirwaw.common.enums.ChorobaStan;
+import pl.gsystems.chirwaw.common.enums.Tryb;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ChorobaDto implements Serializable {
+public class ChorobaComplexDto implements Serializable {
 
 	private Integer chorobaId;
 
@@ -47,5 +47,9 @@ public class ChorobaDto implements Serializable {
 	private String odcinekId;
 
 	private Tryb tryb;
+
+	private List<OperacjaDto> operacjas;
+
+	private List<ProtokolDto> protokols;
 
 }

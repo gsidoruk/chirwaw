@@ -1,8 +1,12 @@
-package pl.gsystems.chirwaw.service.impl;
+package pl.gsystems.chirwaw.api.endpoint.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.gsystems.chirwaw.dto.*;
-import pl.gsystems.chirwaw.service.PacjentService;
+import pl.gsystems.chirwaw.api.dto.*;
+import pl.gsystems.chirwaw.api.endpoint.PacjentGateway;
+import pl.gsystems.chirwaw.api.mappres.PacjentMapper;
+import pl.gsystems.chirwaw.core.dto.PacjentCoreDto;
+import pl.gsystems.chirwaw.core.service.PacjentService;
 import pl.gsystems.chirwaw.utils.RandomString;
 
 import java.util.ArrayList;
@@ -11,9 +15,14 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
-public class PacjentServiceImpl implements PacjentService {
+public class PacjentGatewayController implements PacjentGateway {
 
 	static Random generator = new Random();
+
+	private PacjentMapper pacjentMapper = new PacjentMapper();
+
+	@Autowired
+	private PacjentService pacjentService;
 
 
 	@Override
@@ -23,17 +32,21 @@ public class PacjentServiceImpl implements PacjentService {
 
 	@Override
 	public PacjentDto getPacjent(int id) {
-		return mockPacjent(id);
+		PacjentCoreDto pacjent = pacjentService.getPacjent(id);
+		PacjentDto pacjentDto = pacjentMapper.fromCore(pacjent);
+		return pacjentDto;
 	}
 
 	@Override
 	public int savePacjent(PacjentDto dto) {
-		return generator.nextInt(1000);
+		PacjentCoreDto pacjentCoreDto = pacjentMapper.toCore(dto);
+		int pacjentId = pacjentService.savePacjent(pacjentCoreDto);
+		return pacjentId;
 	}
 
 	@Override
 	public boolean deletePacjent( int id) {
-		return true;
+		return pacjentService.deletePacjent(id);
 
 	}
 
@@ -58,7 +71,7 @@ public class PacjentServiceImpl implements PacjentService {
 
 		List<ChorobaDto> chorobas = new ArrayList<ChorobaDto>();
 		for (int j = 0 ; j < generator.nextInt(4); j++) {
-			ChorobaDto chorobaDto = ChorobaServiceImpl.mockChor(j);
+			ChorobaDto chorobaDto = ChorobaGatewayController.mockChor(j);
 			chorobas.add(chorobaDto);
 		}
 	//	pacjent.setChorobas(chorobas);
@@ -76,7 +89,7 @@ public class PacjentServiceImpl implements PacjentService {
 
 		List<ChorobaDto> chorobas = new ArrayList<ChorobaDto>();
 		for (int j = 0 ; j < generator.nextInt(4); j++) {
-			ChorobaDto chorobaDto = ChorobaServiceImpl.mockChor(j);
+			ChorobaDto chorobaDto = ChorobaGatewayController.mockChor(j);
 			chorobas.add(chorobaDto);
 		}
 	//	pacjent.setChorobas(chorobas);

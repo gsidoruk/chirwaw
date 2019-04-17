@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.dto.enums;
+package pl.gsystems.chirwaw.common.enums;
 
 public enum Tryb {
 	PILNE("A"),DOSC_PILNE("B"), PRZEWLEKLE("C");

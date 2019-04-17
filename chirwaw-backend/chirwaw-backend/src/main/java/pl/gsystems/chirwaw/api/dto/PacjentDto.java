@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.dto;
+package pl.gsystems.chirwaw.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +9,11 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class PacjentComplexDto implements Serializable {
+public class PacjentDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
 	private Integer pacjentId;
-
-	private OperacjaComplexDto operacja;
 
 	private Date dataZgonu;
 

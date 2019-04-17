@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.exception;
+package pl.gsystems.chirwaw.common.exception;
 
 
 import java.util.List;

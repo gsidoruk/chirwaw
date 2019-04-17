@@ -1,15 +1,15 @@
-package pl.gsystems.chirwaw.service;
+package pl.gsystems.chirwaw.api.endpoint;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.gsystems.chirwaw.dto.ChorobaDto;
-import pl.gsystems.chirwaw.dto.enums.ChorobaStan;
+import pl.gsystems.chirwaw.api.dto.ChorobaDto;
+import pl.gsystems.chirwaw.common.enums.ChorobaStan;
 
 @RequestMapping(value = "/choroba")
-public interface ChorobaService {
+public interface ChorobaGateway {
 
 	@ApiOperation(value = "Add new or update Choroba for given pacjentId", response = int.class)
 	@RequestMapping(value = "/saveChoroba/{pacjentId}", method = RequestMethod.POST)

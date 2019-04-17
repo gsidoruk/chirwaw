@@ -1,4 +1,4 @@
-package pl.gsystems.chirwaw.dto;
+package pl.gsystems.chirwaw.api.dto;
 
 import java.io.Serializable;
 
