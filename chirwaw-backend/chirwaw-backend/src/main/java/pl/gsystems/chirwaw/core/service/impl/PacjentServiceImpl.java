@@ -7,15 +7,16 @@ import pl.gsystems.chirwaw.core.dto.PacjentCoreDto;
 import pl.gsystems.chirwaw.core.service.PacjentService;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class PacjentServiceImpl implements PacjentService {
 
     private static Map<Integer, PacjentCoreDto> baza = null;
+
+    private String dbFilePath = System.getProperty("java.io.tmpdir") + File.separator + "chirwawDBfile.txt";
 
     public PacjentServiceImpl() {
         restore();
@@ -43,15 +44,31 @@ public class PacjentServiceImpl implements PacjentService {
             }
         } else { // add new
             if(baza.keySet().isEmpty()) {
-                baza.put(1, dto); // zabazpieczyc przed wielowatkowości
+                dto.setPacjentId(1);
+                baza.put(1, dto);
                 persist();
                 return 1;
             }
             Integer max = Collections.max(baza.keySet());
-            baza.put(max + 1, dto); // zabazpieczyc przed wielowatkowością
+            dto.setPacjentId(max + 1);
+            baza.put(max + 1, dto);
             persist();
             return max + 1;
         }
+    }
+
+    @Override
+    public List<PacjentCoreDto> search(PacjentCoreDto dto) {
+
+        List<PacjentCoreDto> collect = baza.values().stream().filter(p ->
+                (dto.getPacjentId() == null || p.getPacjentId().equals(dto.getPacjentId())) &&
+                (dto.getImie() == null || dto.getImie().isEmpty() || p.getImie().equalsIgnoreCase(dto.getImie())) &&
+                (dto.getNazwisko() == null || dto.getNazwisko().isEmpty() ||  p.getNazwisko().equalsIgnoreCase(dto.getNazwisko())) &&
+                (dto.getPesel() == null || dto.getPesel().isEmpty() ||  p.getPesel().equalsIgnoreCase(dto.getPesel())) &&
+                (dto.getTelKontakt() == null || dto.getTelKontakt().isEmpty() ||  p.getTelKontakt().equalsIgnoreCase(dto.getTelKontakt())) &&
+                (dto.getDataZgonu() == null || p.getDataZgonu().equals(dto.getDataZgonu()))
+        ).collect(Collectors.toList());
+        return collect;
     }
 
     @Override
@@ -67,7 +84,7 @@ public class PacjentServiceImpl implements PacjentService {
 
     private void persist() {
         try {
-            FileOutputStream f = new FileOutputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + "myObjects.txt"));
+            FileOutputStream f = new FileOutputStream(new File(dbFilePath));
 
             ObjectOutputStream o = new ObjectOutputStream(f);
 
@@ -83,7 +100,7 @@ public class PacjentServiceImpl implements PacjentService {
     private void restore() {
         if (baza == null) {
             try {
-                FileInputStream fi = new FileInputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + "myObjects.txt"));
+                FileInputStream fi = new FileInputStream(new File(dbFilePath));
                 ObjectInputStream oi = new ObjectInputStream(fi);
                 Map<Integer, PacjentCoreDto> pr1 = (Map<Integer, PacjentCoreDto>) oi.readObject();
                 baza = pr1;
@@ -97,11 +114,5 @@ public class PacjentServiceImpl implements PacjentService {
             }
         }
 
-
-
-
-
-        // Read objects
-        //Person pr1 = (Person) oi.readObject();
     }
 }

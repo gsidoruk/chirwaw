@@ -2,6 +2,8 @@ package pl.gsystems.chirwaw.core.service;
 
 import pl.gsystems.chirwaw.core.dto.PacjentCoreDto;
 
+import java.util.List;
+
 
 public interface PacjentService {
 
@@ -10,6 +12,8 @@ public interface PacjentService {
 
 
     int savePacjent( PacjentCoreDto dto);
+
+    List<PacjentCoreDto> search(PacjentCoreDto dto);
 
 
     boolean deletePacjent(int id);

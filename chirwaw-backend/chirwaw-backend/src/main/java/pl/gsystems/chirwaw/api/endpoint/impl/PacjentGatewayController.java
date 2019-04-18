@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @RestController
 public class PacjentGatewayController implements PacjentGateway {
@@ -51,7 +52,15 @@ public class PacjentGatewayController implements PacjentGateway {
 	}
 
 	@Override
-	public List<PacjentChorobaSearchResultDto> serchPacjent(PacjentChorobaSearchDto srearchCriteria, final int offset, final int limit) {
+	public List<PacjentDto> serchPacjent(@RequestBody PacjentDto srearchCriteria, @PathVariable("offset") int offset, @PathVariable("limit") int limit) {
+		PacjentCoreDto pacjentCoreDto = pacjentMapper.toCore(srearchCriteria);
+		List<PacjentCoreDto> search = pacjentService.search(pacjentCoreDto);
+		List<PacjentDto> collect = search.stream().map(p -> pacjentMapper.fromCore(p)).collect(Collectors.toList());
+		return collect;
+	}
+
+	@Override
+	public List<PacjentChorobaSearchResultDto> serchPacjentChoroba(PacjentChorobaSearchDto srearchCriteria, final int offset, final int limit) {
 		List<PacjentChorobaSearchResultDto> pacjents = new ArrayList<>();
 		for (int j = 0 ; j < generator.nextInt(offset); j++) {
 			PacjentChorobaSearchResultDto pacjentDto = mockPacjentSearchResultDto(j);

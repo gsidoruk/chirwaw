@@ -29,7 +29,11 @@ public interface PacjentGateway {
 	@RequestMapping(value = "/deletePacjent", method = RequestMethod.DELETE)
 	boolean deletePacjent(@RequestParam(value="id") int id);
 
-	@ApiOperation(value = "Search Pacjent and Choroba, return list of Choroba", response = PacjentChorobaSearchResultDto.class)
+	@ApiOperation(value = "Search Pacjent and Choroba, return list of Choroba", response = PacjentDto.class)
 	@RequestMapping(value = "/serchPacjent/{offset}/{limit}", method = RequestMethod.POST)
-	List<PacjentChorobaSearchResultDto> serchPacjent(@RequestBody PacjentChorobaSearchDto srearchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
+	List<PacjentDto> serchPacjent(@RequestBody PacjentDto srearchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
+
+	@ApiOperation(value = "Search Pacjent and Choroba, return list of Choroba", response = PacjentChorobaSearchResultDto.class)
+	@RequestMapping(value = "/serchPacjentChoroba/{offset}/{limit}", method = RequestMethod.POST)
+	List<PacjentChorobaSearchResultDto> serchPacjentChoroba(@RequestBody PacjentChorobaSearchDto srearchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
 }
