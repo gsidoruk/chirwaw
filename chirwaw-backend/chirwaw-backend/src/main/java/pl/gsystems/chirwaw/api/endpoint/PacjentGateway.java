@@ -6,9 +6,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pl.gsystems.chirwaw.api.dto.PacjentComplexDto;
 import pl.gsystems.chirwaw.api.dto.PacjentDto;
-import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchDto;
 import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchResultDto;
-
+import pl.gsystems.chirwaw.api.dto.PacjentSearchDto;
 
 @RequestMapping(value = "/pacjent")
 public interface PacjentGateway {
@@ -30,6 +29,6 @@ public interface PacjentGateway {
 	boolean deletePacjent(@RequestParam(value="id") int id);
 
 	@ApiOperation(value = "Search Pacjent and Choroba, return list of Choroba", response = PacjentChorobaSearchResultDto.class)
-	@RequestMapping(value = "/serchPacjent/{offset}/{limit}", method = RequestMethod.POST)
-	List<PacjentChorobaSearchResultDto> serchPacjent(@RequestBody PacjentChorobaSearchDto srearchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
+	@RequestMapping(value = "/searchPacjent/{offset}/{limit}", method = RequestMethod.POST)
+	List<PacjentDto> searchPacjent(@RequestBody PacjentSearchDto searchCriteria, @PathVariable("offset") final int offset, @PathVariable("limit") final int limit);
 }

@@ -1,6 +1,13 @@
 package pl.gsystems.chirwaw.core.service.impl;
 
+import com.google.common.base.Strings;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
+import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchDto;
+import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchResultDto;
+import pl.gsystems.chirwaw.api.dto.PacjentSearchDto;
 import pl.gsystems.chirwaw.common.exception.ApplicationException;
 import pl.gsystems.chirwaw.common.exception.BusinessExceptionsCode;
 import pl.gsystems.chirwaw.core.dto.PacjentCoreDto;
@@ -9,8 +16,10 @@ import pl.gsystems.chirwaw.core.service.PacjentService;
 import java.io.*;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class PacjentServiceImpl implements PacjentService {
@@ -63,6 +72,24 @@ public class PacjentServiceImpl implements PacjentService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public List<PacjentCoreDto> searchPacjent(PacjentSearchDto s) {
+        List<PacjentCoreDto> collect = baza.values().stream().filter(p -> {
+            boolean c;
+            c = (!StringUtils.isEmpty(s.getImie()) && p.getImie().equalsIgnoreCase(s.getImie())) &&
+                    (!StringUtils.isEmpty(s.getNazwisko()) && p.getNazwisko().equalsIgnoreCase(s.getNazwisko())) &&
+                    (!StringUtils.isEmpty(s.getPesel()) && p.getPesel().equalsIgnoreCase(s.getPesel())) &&
+                    (!StringUtils.isEmpty(s.getTelKontakt()) && p.getTelKontakt().equalsIgnoreCase(s.getTelKontakt())) &&
+                    (s.getDataZgonuStart() != null && p.getDataZgonu().after(s.getDataZgonuStart())) &&
+                    (s.getDataZgonuEnd() != null && p.getDataZgonu().before(s.getDataZgonuEnd()));
+            // TODO sprawdzanie po ID
+            return c;
+        }).collect(Collectors.toList());
+
+
+        return collect;
     }
 
     private void persist() {
