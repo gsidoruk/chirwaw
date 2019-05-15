@@ -2,24 +2,15 @@ package pl.gsystems.chirwaw.core.service;
 
 import java.util.List;
 
-import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchDto;
-import pl.gsystems.chirwaw.api.dto.PacjentChorobaSearchResultDto;
 import pl.gsystems.chirwaw.api.dto.PacjentSearchDto;
 import pl.gsystems.chirwaw.core.dto.PacjentCoreDto;
-
-import java.util.List;
 
 
 public interface PacjentService {
 
-
     PacjentCoreDto getPacjent(int id);
 
-
     int savePacjent( PacjentCoreDto dto);
-
-    List<PacjentCoreDto> search(PacjentCoreDto dto);
-
 
     boolean deletePacjent(int id);
 

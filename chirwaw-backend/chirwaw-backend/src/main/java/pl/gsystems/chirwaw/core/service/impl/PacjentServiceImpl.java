@@ -78,12 +78,13 @@ public class PacjentServiceImpl implements PacjentService {
     public List<PacjentCoreDto> searchPacjent(PacjentSearchDto s) {
         List<PacjentCoreDto> collect = baza.values().stream().filter(p -> {
             boolean c;
-            c = (!StringUtils.isEmpty(s.getImie()) && p.getImie().equalsIgnoreCase(s.getImie())) &&
-                    (!StringUtils.isEmpty(s.getNazwisko()) && p.getNazwisko().equalsIgnoreCase(s.getNazwisko())) &&
-                    (!StringUtils.isEmpty(s.getPesel()) && p.getPesel().equalsIgnoreCase(s.getPesel())) &&
-                    (!StringUtils.isEmpty(s.getTelKontakt()) && p.getTelKontakt().equalsIgnoreCase(s.getTelKontakt())) &&
-                    (s.getDataZgonuStart() != null && p.getDataZgonu().after(s.getDataZgonuStart())) &&
-                    (s.getDataZgonuEnd() != null && p.getDataZgonu().before(s.getDataZgonuEnd()));
+            c = (StringUtils.isEmpty(s.getImie()) || p.getImie().equalsIgnoreCase(s.getImie())) &&
+                    (StringUtils.isEmpty(s.getNazwisko()) || p.getNazwisko().equalsIgnoreCase(s.getNazwisko())) &&
+                    (StringUtils.isEmpty(s.getPesel()) || p.getPesel().equalsIgnoreCase(s.getPesel())) &&
+                    (StringUtils.isEmpty(s.getTelKontakt()) || p.getTelKontakt().equalsIgnoreCase(s.getTelKontakt())) &&
+//                    (s.getDataZgonuStart() != null && p.getDataZgonu().after(s.getDataZgonuStart())) &&
+//                    (s.getDataZgonuEnd() != null && p.getDataZgonu().before(s.getDataZgonuEnd()));
+                true;
             // TODO sprawdzanie po ID
             return c;
         }).collect(Collectors.toList());
